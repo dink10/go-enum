@@ -95,7 +95,6 @@ func (x {{.enum.Name}}) MarshalJSON() ([]byte, error) {
 
 func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
 	var s string
-	fmt.Printf("text: %s\n", text)
 	if text[0] == '"' {
 		if err := json.Unmarshal(text, &s); err != nil {
 			return err
@@ -103,7 +102,6 @@ func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
 	} else {
 		s = string(text)
 	}
-	fmt.Printf("s: %s\n", s)
 	if len(s) == 0 {
 		return errors.New("empty value")
 	}
@@ -122,20 +120,6 @@ func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
 	*x = tmp
 	return nil
 }
-
-// UnmarshalJSON implements the json.Unmarshaler method
-//func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
-//	var s string
-//	if err := json.Unmarshal(text, &s); err != nil {
-//		return err
-//	}
-//	tmp, err := Parse{{.enum.Name}}(s)
-//	if err != nil {
-//		return err
-//	}
-//	*x = tmp
-//	return nil
-//}
 {{end}}
 
 {{ if .flag }}
