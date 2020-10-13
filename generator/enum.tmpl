@@ -6,6 +6,7 @@ package {{.package}}
 
 import (
     {{- if .json }}"encoding/json"{{ end -}}
+    {{- if .json }}"strconv"{{ end -}}
     "fmt"
 )
 {{end -}}
@@ -91,11 +92,28 @@ func (x {{.enum.Name}}) MarshalJSON() ([]byte, error) {
 	return json.Marshal(x.String())
 }
 
-// UnmarshalJSON implements the json.Unmarshaler method
+
 func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
 	var s string
-	if err := json.Unmarshal(text, &s); err != nil {
-		return err
+	fmt.Printf("text: %s\n", text)
+	if text[0] == '"' {
+		if err := json.Unmarshal(text, &s); err != nil {
+			return err
+		}
+	} else {
+		s = string(text)
+	}
+	fmt.Printf("s: %s\n", s)
+	if len(s) == 0 {
+		return errors.New("empty value")
+	}
+	if s[0] >= '0' && s[0] <= '9' {
+		intValue, err := strconv.Atoi(s)
+		if err != nil {
+			return err
+		}
+		*x = {{.enum.Name}}(intValue)
+		return nil
 	}
 	tmp, err := Parse{{.enum.Name}}(s)
 	if err != nil {
@@ -104,6 +122,20 @@ func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
 	*x = tmp
 	return nil
 }
+
+// UnmarshalJSON implements the json.Unmarshaler method
+//func (x *{{.enum.Name}}) UnmarshalJSON(text []byte) error {
+//	var s string
+//	if err := json.Unmarshal(text, &s); err != nil {
+//		return err
+//	}
+//	tmp, err := Parse{{.enum.Name}}(s)
+//	if err != nil {
+//		return err
+//	}
+//	*x = tmp
+//	return nil
+//}
 {{end}}
 
 {{ if .flag }}
