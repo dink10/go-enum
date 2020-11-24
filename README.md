@@ -1,8 +1,8 @@
 # go-enum
-[![CircleCI](https://circleci.com/gh/abice/go-enum.svg?style=svg&circle-token=b44c10ce16bcef76e86da801d67811a5ff71fc72)](https://circleci.com/gh/abice/go-enum)
-[![Go Report Card](https://goreportcard.com/badge/github.com/abice/go-enum)](https://goreportcard.com/report/github.com/abice/go-enum)
-[![Coverage Status](https://coveralls.io/repos/github/abice/go-enum/badge.svg)](https://coveralls.io/github/abice/go-enum)
-[![GoDoc](https://godoc.org/github.com/abice/go-enum?status.svg)](https://godoc.org/github.com/abice/go-enum)
+[![CircleCI](https://circleci.com/gh/dink10/go-enum.svg?style=svg&circle-token=b44c10ce16bcef76e86da801d67811a5ff71fc72)](https://circleci.com/gh/dink10/go-enum)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dink10/go-enum)](https://goreportcard.com/report/github.com/dink10/go-enum)
+[![Coverage Status](https://coveralls.io/repos/github/dink10/go-enum/badge.svg)](https://coveralls.io/github/dink10/go-enum)
+[![GoDoc](https://godoc.org/github.com/dink10/go-enum?status.svg)](https://godoc.org/github.com/dink10/go-enum)
 [![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go)  
 
 An enum generator for go
@@ -191,7 +191,7 @@ func (x *Color) UnmarshalText(text []byte) error {
 
 
 ## Adding it to your project
-1. `go get github.com/abice/go-enum`
+1. `go get github.com/dink10/go-enum`
 1. Add a go:generate line to your file like so... `//go:generate go-enum -f=$GOFILE --marshal`
 1. Run go generate like so `go generate ./...`
 1. Enjoy your newly created Enumeration

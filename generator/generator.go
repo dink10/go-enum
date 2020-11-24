@@ -16,7 +16,7 @@ import (
 	"unicode"
 
 	"github.com/Masterminds/sprig"
-	"github.com/abice/go-enum/generator/assets"
+	"github.com/dink10/go-enum/generator/assets"
 	"github.com/pkg/errors"
 	"golang.org/x/tools/imports"
 )
